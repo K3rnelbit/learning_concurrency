@@ -1,0 +1,23 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wpedantic",
+      "-std=c++23",
+      "-Iinclude",
+      "-g",
+      "-O0",
+      "-DDEBUG",
+      "-c",
+      "-o",
+      "build/main.o",
+      "src/main.cpp"
+    ],
+    "directory": "/home/swiatoslaw/code/cpp/concurrency/concur_in_action/three",
+    "file": "/home/swiatoslaw/code/cpp/concurrency/concur_in_action/three/src/main.cpp",
+    "output": "/home/swiatoslaw/code/cpp/concurrency/concur_in_action/three/build/main.o"
+  }
+]
