@@ -9,6 +9,7 @@
 //----------------------------------------------------------------------------------------------------------------------
 //
 #include "main.h"
+#include <mutex>
 #include <thread>
 //----------------------------------------------------------------------------------------------------------------------
 ///
@@ -192,11 +193,27 @@ int main(void)
   return 0;
 }
 #endif
-
+class Example3
+{
+  private:
+    std::mutex m;
+    int valuable_obj_{5};
+  public:
+    friend void swap(Example3& e1, Example3& e2)
+    {
+      if(&e1 == &e2)
+        return;
+      //goal: only one thread at at time can lock/unlock the mutexes on both objects:
+      std::lock(e1.m, e2.m);//safely locks the mutexes, however the mutexes will not be automatically unlocked via RAII, so:
+      std::lock_guard<std::mutex> l1{e1.m, std::adopt_lock};
+      std::lock_guard<std::mutex> l2{e2.m, std::adopt_lock};
+      ,ff
+    }
+};
 void do_something(std::promise<const char *>&& promise) noexcept
 {
   std::this_thread::sleep_for(std::chrono::seconds(2));
-  promise.set_value("An unusually long interruption has not occured.");
+  promise.set_value("An unusually long interruption perhaps has occured.");
 }
 int main(void)
 {
