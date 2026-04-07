@@ -12,3 +12,4 @@
 #include <future>
 #include <thread>
 #include <cmath>
+#include <exception>
